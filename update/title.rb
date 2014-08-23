@@ -26,9 +26,9 @@ class Titles
 			end
 		end
 	end
-	def self.initTitles
-		if File.exist?("archive.txt")
-			k = File.read("archive.txt").split("\n")
+	def self.initTitles(month, year)
+		if File.directory?("../archive") and File.directory?("../archive/#{year}") and File.exists?("../archive/#{year}/#{month}.txt")
+			k = File.read("../archive/#{year}/#{month}.txt").split("\n")
 			@titles.merge(k)
 			return true
 		else

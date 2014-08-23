@@ -1,0 +1,152 @@
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	#tr-corner {
+		position: fixed;
+		top: 0px;
+		right: 0px;
+		a#github {
+			font-family: ProximaNovaRegular, Helvetica, Arial, sans-serif;
+			font-size: 15px;
+			padding: 6px;
+			display: inline-block;
+			cursor: pointer;
+			color: #aaa;
+			text-decoration: none;
+			&:hover, &:active, &:focus {
+				color: #111;
+				text-decoration: underline;
+			}
+		}
+	}
+	#tl-corner {
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		#toggleoptions {
+			font-family: ProximaNovaRegular, Helvetica, Arial, sans-serif;
+			font-size: 15px;
+			padding: 6px;
+			display: inline-block;
+			cursor: pointer;
+			&.off {
+				color: #aaa;
+				&:hover {
+					color: #111;
+				}
+			}
+			&.on {
+				color: rgb(17, 17, 17);
+				&:hover {
+					color: #aaa;
+				}
+			}
+		}
+		#options {
+			display: none;
+			background: white;
+			padding: 6px;
+			font-family: ProximaNovaRegular, Helvetica, Arial, sans-serif;
+			font-size: 12px;
+			div {
+				margin-bottom: 5px;
+			}
+			label {
+				line-height: 1.5em;
+			}
+			.fore {
+				label {
+					display: block;
+					border-bottom: 1px dotted #888;
+					margin-bottom: 7px;
+				}
+				input {
+					margin-left: 30px;
+					border: 1px solid #E2E2E2;
+					color: #626262;
+					font-family: ProximaNovaRegular, Helvetica, Arial, sans-serif;
+					font-size: 12px;
+				}
+			}
+			#bare {
+				margin: 0px;
+				padding: 0px;
+				width: 1em;
+				height: 1em;
+			}
+			#applyoptions {
+				border: none;
+				background-color: rgb(238, 51, 34);
+				border-radius: 2px;
+				box-sizing: border-box;
+				color: rgb(255, 255, 255);
+				cursor: pointer;
+				display: block;
+				font-family: ProximaNovaSemibold, sans-serif;
+				font-size: 15px;
+				font-style: normal;
+				font-weight: normal;
+				height: 30px;
+				width: 180px;
+				letter-spacing: normal;
+				line-height: normal;
+				margin: 25px auto 0px auto;
+				padding: 7px 10px;
+				text-align: center;
+				&:hover, &:focus {
+					background-color: #cd2010;
+				}
+			}
+		}
+	}
+	table#container {
+		margin: auto;
+		width: auto;
+		text-align: center;
+		height: 100%;
+		td {
+			vertical-align: middle;
+			#sentence {
+				color: rgb(51, 51, 51);
+				display: block;
+				font-family: ProximaNovaSemibold, Helvetica, Arial, sans-serif;
+				font-size: 36px;
+				font-style: normal;
+				font-variant: normal;
+				font-weight: normal;
+				letter-spacing: normal;
+				line-height: 38px;
+				margin-bottom: 10px;
+				max-width: 990px;
+				padding: 0px 10px;
+			}
+			#button {
+				#refresh {
+					border: none;
+					background-color: rgb(238, 51, 34);
+					border-radius: 2px;
+					box-sizing: border-box;
+					color: rgb(255, 255, 255);
+					cursor: pointer;
+					display: block;
+					font-family: ProximaNovaSemibold, sans-serif;
+					font-size: 20px;
+					font-style: normal;
+					font-weight: normal;
+					height: 38px;
+					letter-spacing: normal;
+					line-height: normal;
+					margin: 25px auto 0px auto;
+					padding: 7px 10px;
+					text-align: center;
+					width: 180px;
+					&:hover, &:focus {
+						background-color: #cd2010;
+					}
+				}
+			}
+		}
+	}
+}
