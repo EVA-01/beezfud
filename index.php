@@ -25,6 +25,9 @@
 			$earliest = $_GET["earliest"];
 		}
 	}
+	$contents = file_get_contents("archive/data.json");
+	$contents = utf8_encode($contents);
+	$data = json_decode($contents);
 	function get_sentence($l, $m, $r, $e, $c) {
 		$la = "";
 		$ma = "";
@@ -56,6 +59,8 @@
 	}
 	$sentence = get_sentence($lookback, $max, $mrange, $earliest, $latest);
 	if(!$bare) {
+		$archiveEarliest = $data->earliest->year . "-" . ($data->earliest->month < 10 ? "0" : "") . $data->earliest->month;
+		$archiveLatest = $data->latest->year . "-" . ($data->latest->month < 10 ? "0" : "") . $data->latest->month;
 		$html = <<<HTML
 <html lang="en">
 	<head>
@@ -71,11 +76,11 @@
 			<div id="options">
 				<div class="fore">
 					<label for="earliest">Earliest</label>
-					<input type="month" name="earliest" id="earliest" value="$earliest">
+					<input type="month" name="earliest" id="earliest" value="$earliest" min="$archiveEarliest" max="$archiveLatest">
 				</div>
 				<div class="fore">
 					<label for="latest">Latest</label>
-					<input type="month" name="latest" id="latest" value="$latest">
+					<input type="month" name="latest" id="latest" value="$latest" min="$archiveEarliest" max="$archiveLatest">
 				</div>
 				<div class="fore">
 					<label for="range">Month range</label>
