@@ -44,10 +44,10 @@ def main(argv):
 	se = datetime.now().month - mrange
 	if se % 12 == 0:
 		earliest["month"] = 12
-		earliest["year"] = datetime.now().year - math.floor(se / 12) - 1
+		earliest["year"] = int(datetime.now().year - math.floor(se / 12) - 1)
 	else:
 		earliest["month"] = se % 12
-		earliest["year"] = datetime.now().year - math.floor(se / 12)
+		earliest["year"] = int(datetime.now().year - math.floor(se / 12))
 	error = False
 	try:
 		opts, args = getopt.getopt(argv, "l:m:e:c:r:", ["lookback=", "max=", "earliest=", "latest=", "range="])
@@ -78,19 +78,19 @@ def main(argv):
 			se = latest["month"] - mrange
 			if se % 12 == 0:
 				earliest["month"] = 12
-				earliest["year"] = latest["year"] + math.floor(se / 12) - 1
+				earliest["year"] = int(latest["year"] + math.floor(se / 12) - 1)
 			else:
 				earliest["month"] = se % 12
-				earliest["year"] = latest["year"] + math.floor(se / 12)
+				earliest["year"] = int(latest["year"] + math.floor(se / 12))
 		elif late == False and earl == True:
 			latest = {}
 			se = earliest["month"] + mrange
 			if se % 12 == 0:
 				latest["month"] = 12
-				latest["year"] = earliest["year"] + math.floor(se / 12) - 1
+				latest["year"] = int(earliest["year"] + math.floor(se / 12) - 1)
 			else:
 				latest["month"] = se % 12
-				latest["year"] = earliest["year"] + math.floor(se / 12)
+				latest["year"] = int(earliest["year"] + math.floor(se / 12))
 	titles = []
 	cyear = earliest["year"]
 	while cyear <= latest["year"]:
