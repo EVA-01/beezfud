@@ -15,6 +15,7 @@ class CLI < Thor
 	desc "month [-r] [-m MONTH] [-y YEAR]", "Archive by month"
 	def month
 		last = days_in_month(options[:month])
+		Titles.getData
 		if !options[:replace]
 			puts "Retrieve titles from local archive"
 			l = Titles.initTitles(options[:month], options[:year])
@@ -27,9 +28,13 @@ class CLI < Thor
 		for day in 1..last
 			puts "\t#{options[:month]}/#{day}/#{options[:year]}"
 			k = Titles.getTitles(options[:month], day, options[:year])
-			puts "\t\tSuccessful" if k
-			puts "\t\t404" if !k
-			break if !k
+			if k
+				puts "\t\tSuccessful"
+				Titles.updateData(options[:month], day, options[:year])
+			else
+				puts "\t\t404"
+				break
+			end
 		end
 		puts "Saving to archive"
 		if File.directory?("../archive")
@@ -41,6 +46,8 @@ class CLI < Thor
 			Dir.mkdir "../archive/#{options[:year]}"
 		end
 		File.open("../archive/#{options[:year]}/#{options[:month]}.txt", "w+") { |f| f.write(Titles.returnTitles.join("\n")) }
+		puts "Updating data"
+		Titles.saveData
 	end
 	
 	option :month, :type => :numeric, :default => Time.now.month, :aliases => "-m"
@@ -58,8 +65,12 @@ class CLI < Thor
 		end
 		puts "Retrieving titles from #{options[:month]}/#{options[:day]}/#{options[:year]}"
 		k = Titles.getTitles(options[:month], options[:day], options[:year])
-		puts "\tSuccessful" if k
-		puts "\t404" if !k
+		if k
+			puts "\tSuccessful"
+			Titles.updateData(options[:month], options[:day], options[:year])
+		else
+			puts "\t404"
+		end
 		puts "Saving to archive"
 		if File.directory?("../archive")
 			if !File.directory?("../archive/#{options[:year]}")
@@ -70,6 +81,8 @@ class CLI < Thor
 			Dir.mkdir "../archive/#{options[:year]}"
 		end
 		File.open("../archive/#{options[:year]}/#{options[:month]}.txt", "w+") { |f| f.write(Titles.returnTitles.join("\n")) }
+		puts "Updating data"
+		Titles.saveData
 	end
 end
 

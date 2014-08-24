@@ -1,6 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 require 'set'
+require 'json'
 
 class String
 	def clean
@@ -37,5 +38,54 @@ class Titles
 	end
 	def self.returnTitles
 		return @titles.to_a
+	end
+	def self.getData
+		if File.directory?("../archive") and File.exists?("../archive/data.json")
+			@data = JSON.parse(File.read("../archive/data.json"))
+		else
+			@data = {}
+		end
+		return @data
+	end
+	def self.updateData(month, day, year)
+		if !defined?(@data)
+			self.getData
+		end
+		current = {
+			"month" => month.to_i,
+			"day" => day.to_i,
+			"year" => year.to_i
+		}
+		if !@data.key?("latest") or current["year"] > @data["latest"]["year"] or (current["year"] == @data["latest"]["year"] and current["month"] > @data["latest"]["month"]) or (current["year"] == @data["latest"]["year"] and current["month"] == @data["latest"]["month"] and current["day"] > @data["latest"]["day"])
+			@data["latest"] = current
+		end
+		if !@data.key?("earliest") or current["year"] < @data["earliest"]["year"] or (current["year"] == @data["earliest"]["year"] and current["month"] < @data["earliest"]["month"]) or (current["year"] == @data["earliest"]["year"] and current["month"] == @data["earliest"]["month"] and current["day"] < @data["earliest"]["day"])
+			@data["earliest"] = current
+		end
+		if !@data.key?("included")
+			@data["included"] = {
+				"#{current["year"]}" => {
+					"#{current["month"]}" => {
+						"#{current["day"]}" => true
+					}
+				}
+			}
+		else
+			if !@data["included"].key?("#{current["year"]}")
+				@data["included"]["#{current["year"]}"] = {}
+			end
+			if !@data["included"]["#{current["year"]}"].key?("#{current["month"]}")
+				@data["included"]["#{current["year"]}"]["#{current["month"]}"] = {}
+			end
+			if !@data["included"]["#{current["year"]}"]["#{current["month"]}"].key?("#{current["day"]}")
+				@data["included"]["#{current["year"]}"]["#{current["month"]}"]["#{current["day"]}"] = true
+			end
+		end
+		return @data
+	end
+	def self.saveData
+		File.open("../archive/data.json","w") do |f|
+			f.write(JSON.pretty_generate(@data))
+		end
 	end
 end
