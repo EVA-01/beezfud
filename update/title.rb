@@ -11,8 +11,10 @@ class String
 	end
 end
 class Titles
-	@titles = Set.new []
-	def self.getTitles(month, day, year)
+	def initialize
+		@titles = Set.new []
+	end
+	def getTitles(month, day, year)
 		url = "http://www.buzzfeed.com/archive/#{year}/#{month}/#{day}"
 		begin
 			doc = Nokogiri::HTML(open(url))
@@ -27,7 +29,7 @@ class Titles
 			end
 		end
 	end
-	def self.initTitles(month, year)
+	def initTitles(month, year)
 		if File.directory?("../archive") and File.directory?("../archive/#{year}") and File.exists?("../archive/#{year}/#{month}.txt")
 			k = File.read("../archive/#{year}/#{month}.txt").split("\n")
 			@titles.merge(k)
@@ -36,7 +38,7 @@ class Titles
 			return false
 		end
 	end
-	def self.returnTitles
+	def returnTitles
 		return @titles.to_a
 	end
 	def self.getData
