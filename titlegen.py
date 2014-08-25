@@ -1,4 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/env python
+"""
+# enable debugging
+import cgitb
+cgitb.enable()
+print "Content-Type: text/plain;charset=utf-8"
+"""
 # Based on https://github.com/FiloSottile/HNTitles -> hngen.py
 # -*- coding: ISO-8859-1 -*-
 
@@ -8,6 +14,7 @@ import sys, getopt
 from datetime import datetime
 import math
 import os
+import codecs
 
 #Typical sampling from a categorical distribution
 def sample(items):
@@ -106,7 +113,7 @@ def main(argv):
 				e = 12
 			while b <= e:
 				if os.path.exists("archive/" + str(cyear) + "/" + str(b) + ".txt"):
-					archive = open("archive/" + str(cyear) + "/" + str(b) + ".txt", encoding="utf-8")
+					archive = codecs.open("archive/" + str(cyear) + "/" + str(b) + ".txt", encoding="utf-8")
 					titles += archive.read().split("\n")
 					archive.close()
 				b += 1
