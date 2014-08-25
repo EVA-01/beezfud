@@ -65,6 +65,7 @@
 <html lang="en">
 	<head>
 		<title>BeezFud</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no">
 		<link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
 	</head>
 	<body>

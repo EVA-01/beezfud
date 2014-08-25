@@ -1,17 +1,43 @@
-/* line 1, ../sass/main.scss */
+@media (min-width: 451px) {
+  /* line 3, ../sass/main.scss */
+  body #tl-corner {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+  }
+  /* line 7, ../sass/main.scss */
+  body #tl-corner #options {
+    background-color: #fff;
+  }
+}
+@media (max-width: 450px) {
+  /* line 15, ../sass/main.scss */
+  body #tl-corner {
+    display: inline-block;
+  }
+  /* line 17, ../sass/main.scss */
+  body #tl-corner, body #tl-corner #options {
+    width: 100%;
+  }
+  /* line 20, ../sass/main.scss */
+  body #tl-corner #options {
+    background-color: #eee;
+  }
+}
+/* line 26, ../sass/main.scss */
 body {
   width: 100%;
   height: 100%;
   margin: 0px;
   padding: 0px;
 }
-/* line 6, ../sass/main.scss */
+/* line 31, ../sass/main.scss */
 body #tr-corner {
   position: fixed;
   top: 0px;
   right: 0px;
 }
-/* line 10, ../sass/main.scss */
+/* line 35, ../sass/main.scss */
 body #tr-corner a#github {
   font-family: ProximaNovaRegular, Helvetica, Arial, sans-serif;
   font-size: 15px;
@@ -19,66 +45,62 @@ body #tr-corner a#github {
   display: inline-block;
   cursor: pointer;
   color: #aaa;
+  text-shadow: 1px 1px 0px #eee;
   text-decoration: none;
 }
-/* line 18, ../sass/main.scss */
+/* line 44, ../sass/main.scss */
 body #tr-corner a#github:hover, body #tr-corner a#github:active, body #tr-corner a#github:focus {
   color: #111;
   text-decoration: underline;
 }
-/* line 24, ../sass/main.scss */
-body #tl-corner {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-}
-/* line 28, ../sass/main.scss */
+/* line 52, ../sass/main.scss */
 body #tl-corner #toggleoptions {
   font-family: ProximaNovaRegular, Helvetica, Arial, sans-serif;
   font-size: 15px;
   padding: 6px;
   display: inline-block;
   cursor: pointer;
+  text-shadow: 1px 1px 0px #eee;
 }
-/* line 34, ../sass/main.scss */
+/* line 59, ../sass/main.scss */
 body #tl-corner #toggleoptions.off {
   color: #aaa;
 }
-/* line 36, ../sass/main.scss */
+/* line 61, ../sass/main.scss */
 body #tl-corner #toggleoptions.off:hover {
   color: #111;
 }
-/* line 40, ../sass/main.scss */
+/* line 65, ../sass/main.scss */
 body #tl-corner #toggleoptions.on {
   color: #111111;
 }
-/* line 42, ../sass/main.scss */
+/* line 67, ../sass/main.scss */
 body #tl-corner #toggleoptions.on:hover {
   color: #aaa;
 }
-/* line 47, ../sass/main.scss */
+/* line 72, ../sass/main.scss */
 body #tl-corner #options {
   display: none;
-  background: white;
-  padding: 6px;
+  padding: 6px 6px 10px;
+  text-shadow: 1px 1px 0px white;
   font-family: ProximaNovaRegular, Helvetica, Arial, sans-serif;
   font-size: 12px;
 }
-/* line 53, ../sass/main.scss */
+/* line 78, ../sass/main.scss */
 body #tl-corner #options div {
   margin-bottom: 5px;
 }
-/* line 56, ../sass/main.scss */
+/* line 81, ../sass/main.scss */
 body #tl-corner #options label {
   line-height: 1.5em;
 }
-/* line 60, ../sass/main.scss */
+/* line 85, ../sass/main.scss */
 body #tl-corner #options .fore label {
   display: block;
   border-bottom: 1px dotted #888;
   margin-bottom: 7px;
 }
-/* line 65, ../sass/main.scss */
+/* line 90, ../sass/main.scss */
 body #tl-corner #options .fore input {
   margin-left: 30px;
   border: 1px solid #E2E2E2;
@@ -86,14 +108,14 @@ body #tl-corner #options .fore input {
   font-family: ProximaNovaRegular, Helvetica, Arial, sans-serif;
   font-size: 12px;
 }
-/* line 73, ../sass/main.scss */
+/* line 98, ../sass/main.scss */
 body #tl-corner #options #bare {
   margin: 0px;
   padding: 0px;
   width: 1em;
   height: 1em;
 }
-/* line 79, ../sass/main.scss */
+/* line 104, ../sass/main.scss */
 body #tl-corner #options #applyoptions {
   border: none;
   background-color: #ee3322;
@@ -114,22 +136,22 @@ body #tl-corner #options #applyoptions {
   padding: 7px 10px;
   text-align: center;
 }
-/* line 98, ../sass/main.scss */
+/* line 123, ../sass/main.scss */
 body #tl-corner #options #applyoptions:hover, body #tl-corner #options #applyoptions:focus {
   background-color: #cd2010;
 }
-/* line 104, ../sass/main.scss */
+/* line 129, ../sass/main.scss */
 body table#container {
   margin: auto;
   width: auto;
   text-align: center;
   height: 100%;
 }
-/* line 109, ../sass/main.scss */
+/* line 134, ../sass/main.scss */
 body table#container td {
   vertical-align: middle;
 }
-/* line 111, ../sass/main.scss */
+/* line 136, ../sass/main.scss */
 body table#container td #sentence {
   color: #333333;
   display: block;
@@ -144,7 +166,7 @@ body table#container td #sentence {
   max-width: 990px;
   padding: 0px 10px;
 }
-/* line 126, ../sass/main.scss */
+/* line 151, ../sass/main.scss */
 body table#container td #button #refresh {
   border: none;
   background-color: #ee3322;
@@ -165,7 +187,7 @@ body table#container td #button #refresh {
   text-align: center;
   width: 180px;
 }
-/* line 145, ../sass/main.scss */
+/* line 170, ../sass/main.scss */
 body table#container td #button #refresh:hover, body table#container td #button #refresh:focus {
   background-color: #cd2010;
 }
