@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # Based on https://github.com/FiloSottile/HNTitles -> hngen.py
+# -*- coding: ISO-8859-1 -*-
 
 from collections import defaultdict
 from random import random
@@ -105,7 +106,7 @@ def main(argv):
 				e = 12
 			while b <= e:
 				if os.path.exists("archive/" + str(cyear) + "/" + str(b) + ".txt"):
-					archive = open("archive/" + str(cyear) + "/" + str(b) + ".txt")
+					archive = open("archive/" + str(cyear) + "/" + str(b) + ".txt", encoding="utf-8")
 					titles += archive.read().split("\n")
 					archive.close()
 				b += 1

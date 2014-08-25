@@ -37,19 +37,23 @@ class CLI < Thor
 					break
 				end
 			end
-			puts "Saving to archive"
-			if File.directory?("../archive")
-				if !File.directory?("../archive/#{options[:year]}")
+			g = t.returnTitles
+			if g.length != 0
+				puts "Saving to archive"
+				if File.directory?("../archive")
+					if !File.directory?("../archive/#{options[:year]}")
+						Dir.mkdir "../archive/#{options[:year]}"
+					end
+				else
+					Dir.mkdir "../archive"
 					Dir.mkdir "../archive/#{options[:year]}"
 				end
-			else
-				Dir.mkdir "../archive"
-				Dir.mkdir "../archive/#{options[:year]}"
+				File.open("../archive/#{options[:year]}/#{month}.txt", "w+") { |f| f.write(g.join("\n")) }
+				puts "Updating data"
+				Titles.saveData
 			end
-			File.open("../archive/#{options[:year]}/#{month}.txt", "w+") { |f| f.write(t.returnTitles.join("\n")) }
-			puts "Updating data"
-			Titles.saveData
 		end
+		puts 7.chr
 	end
 
 	option :month, :type => :numeric, :default => Time.now.month, :aliases => "-m"
@@ -79,18 +83,22 @@ class CLI < Thor
 				break
 			end
 		end
-		puts "Saving to archive"
-		if File.directory?("../archive")
-			if !File.directory?("../archive/#{options[:year]}")
+		g = t.returnTitles
+		if g.length != 0
+			puts "Saving to archive"
+			if File.directory?("../archive")
+				if !File.directory?("../archive/#{options[:year]}")
+					Dir.mkdir "../archive/#{options[:year]}"
+				end
+			else
+				Dir.mkdir "../archive"
 				Dir.mkdir "../archive/#{options[:year]}"
 			end
-		else
-			Dir.mkdir "../archive"
-			Dir.mkdir "../archive/#{options[:year]}"
+			File.open("../archive/#{options[:year]}/#{options[:month]}.txt", "w+") { |f| f.write(g.join("\n")) }
+			puts "Updating data"
+			Titles.saveData
 		end
-		File.open("../archive/#{options[:year]}/#{options[:month]}.txt", "w+") { |f| f.write(t.returnTitles.join("\n")) }
-		puts "Updating data"
-		Titles.saveData
+		puts 7.chr
 	end
 	
 	option :month, :type => :numeric, :default => Time.now.month, :aliases => "-m"
@@ -116,18 +124,22 @@ class CLI < Thor
 		else
 			puts "\t404"
 		end
-		puts "Saving to archive"
-		if File.directory?("../archive")
-			if !File.directory?("../archive/#{options[:year]}")
+		g = t.returnTitles
+		if g.length != 0
+			puts "Saving to archive"
+			if File.directory?("../archive")
+				if !File.directory?("../archive/#{options[:year]}")
+					Dir.mkdir "../archive/#{options[:year]}"
+				end
+			else
+				Dir.mkdir "../archive"
 				Dir.mkdir "../archive/#{options[:year]}"
 			end
-		else
-			Dir.mkdir "../archive"
-			Dir.mkdir "../archive/#{options[:year]}"
+			File.open("../archive/#{options[:year]}/#{options[:month]}.txt", "w+") { |f| f.write(t.returnTitles.join("\n")) }
+			puts "Updating data"
+			Titles.saveData
 		end
-		File.open("../archive/#{options[:year]}/#{options[:month]}.txt", "w+") { |f| f.write(t.returnTitles.join("\n")) }
-		puts "Updating data"
-		Titles.saveData
+		puts 7.chr
 	end
 end
 

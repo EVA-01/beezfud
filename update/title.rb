@@ -19,7 +19,7 @@ class Titles
 		begin
 			doc = Nokogiri::HTML(open(url))
 			titles = doc.css(".flow li.bf_dom a")
-			@titles.merge(titles.map { |t| t.content.gsub(/\xE2\x80\x9C/, '"').gsub(/\xE2\x80\x9D/, '"').gsub(/\xE2\x80\x98/, "'").gsub(/\xE2\x80\x99/, "'").clean })
+			@titles.merge(titles.map { |t| t.content.gsub(/\xE2\x80\x9C/, '"').gsub(/\xE2\x80\x9D/, '"').gsub(/\xE2\x80\x98/, "'").gsub(/\xE2\x80\x99/, "'") })
 			return true
 		rescue OpenURI::HTTPError => e
 			if e.message == "404 Not Found"
