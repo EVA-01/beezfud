@@ -10,19 +10,19 @@
 			$bare = true;
 		}
 		if(isset($_GET["lookback"])) {
-			$lookback = $_GET["lookback"];
+			$lookback = escapeshellarg($_GET["lookback"]);
 		}
 		if(isset($_GET["max"])) {
-			$max = $_GET["max"];
+			$max = escapeshellarg($_GET["max"]);
 		}
 		if(isset($_GET["range"])) {
-			$mrange = $_GET["range"];
+			$mrange = escapeshellarg($_GET["range"]);
 		}
 		if(isset($_GET["latest"])) {
-			$latest = $_GET["latest"];
+			$latest = escapeshellarg($_GET["latest"]);
 		}
 		if(isset($_GET["earliest"])) {
-			$earliest = $_GET["earliest"];
+			$earliest = escapeshellarg($_GET["earliest"]);
 		}
 	}
 	$contents = file_get_contents("archive/data.json");
